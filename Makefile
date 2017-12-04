@@ -13,23 +13,22 @@ OBJ=		$(SRC:.c=.o)
 
 CFLAGS= 	-W -Wall -fno-builtin
 
+CPPFLAGS =	-I include
+
 LFLAGS=		-l c_graph_prog
 
-NAME=		push_swap
+NAME=		my_hunter
 
 all:		$(NAME)
 
 $(NAME):	$(OBJ)
-		make -C lib/src
 		gcc -o $(NAME) $(OBJ) $(LFLAGS)
 
 clean:
 		rm -f $(OBJ)
-		make clean -C lib/src
 
 fclean: 	clean
 		rm -f $(NAME)
-		make fclean -C lib/src
 
 re:		fclean all
 
