@@ -8,11 +8,10 @@
 #ifndef MY_HUNTER_H_
 #define MY_HUNTER_H_
 
-typedef struct s_framebuffer
-{
-	unsigned char *pixels;
-	unsigned int width;
-	unsigned int height;
-} t_framebuffer;
+struct framebuffer {
+    unsigned int width;
+    unsigned int height;
+    sfUint8 *pixels;
+} framebuffer_t;
 
 #endif
