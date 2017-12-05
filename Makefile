@@ -7,7 +7,8 @@
 
 SRC_DIR=	.
 
-SRC=		$(SRC_DIR)/my_hunter.c
+SRC=		$(SRC_DIR)/my_hunter.c	\
+		$(SRC_DIR)/tools.c
 
 OBJ=		$(SRC:.c=.o)
 

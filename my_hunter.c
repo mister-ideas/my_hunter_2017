@@ -7,89 +7,82 @@
 
 #include <SFML/Graphics.h>
 #include <SFML/System.h>
+#include <stdlib.h>
 #include "my_hunter.h"
 
-sfRenderWindow *window_create(unsigned int width, unsigned int height)
+void check_borders(hunter_t *hunter)
 {
-	sfRenderWindow *window;
-	sfVideoMode video_mode = {width, height, 32};
+	hunter->position = sfSprite_getPosition(hunter->pig_sprite);
+	if (hunter->position.x > 1840) {
+		hunter->offset.x = rand() % 10 * -1;
+		hunter->offset.y = rand() % 10;
+	}
+	if (hunter->position.x < 0) {
+		hunter->offset.x = rand() % 10;
+		hunter->offset.y = rand() % 10 * -1;
+	}
+	if (hunter->position.y < 0)
+		hunter->offset.y = rand() % 10;
+	if (hunter->position.y > 945)
+		hunter->offset.y = rand() % 10 * -1;
+}
 
-	window = sfRenderWindow_create(video_mode, "Duck hunt", sfClose, NULL);
-	return (window);
+void game_loop(hunter_t *hunter)
+{
+	sfSprite_setTextureRect(hunter->pig_sprite, hunter->rect);
+	check_borders(hunter);
+	sfSprite_move(hunter->pig_sprite, hunter->offset);
+	hunter->time = sfClock_getElapsedTime(hunter->clock);
+	hunter->seconds = hunter->time.microseconds / 1000000.0;
+	if (hunter->seconds > 0.5) {
+		if (hunter->rect.left != 480)
+			hunter->rect.left += 80;
+		else
+			hunter->rect.left = 0;
+		sfClock_restart(hunter->clock);
+	}
+	while (sfRenderWindow_pollEvent(hunter->window, &hunter->event)) {
+		if (hunter->event.type == sfEvtClosed)
+			sfRenderWindow_close(hunter->window);
+	}
+	sfRenderWindow_clear(hunter->window, sfBlack);
+	sfRenderWindow_drawSprite(hunter->window, hunter->bg_sprite, NULL);
+	sfRenderWindow_drawSprite(hunter->window, hunter->pig_sprite, NULL);
+	sfRenderWindow_display(hunter->window);
+}
+
+void game_init(hunter_t *hunter)
+{
+	hunter->window = window_create(1920, 1080);
+	hunter->clock = sfClock_create();
+	hunter->offset.x = 10;
+	hunter->offset.y = 0;
+	hunter->rect.top = 0;
+	hunter->rect.left = 0;
+	hunter->rect.width = 80;
+	hunter->rect.height = 80;
+	if (!hunter->window)
+		exit(84);
+	hunter->bg_texture = sfTexture_createFromFile("background.png", NULL);
+	if (!hunter->bg_texture)
+		exit(84);
+	hunter->pig_texture = sfTexture_createFromFile("spritesheet.png", NULL);
+	if (!hunter->pig_texture)
+		exit(84);
+	hunter->bg_sprite = sfSprite_create();
+	hunter->pig_sprite = sfSprite_create();
+	sfSprite_setTexture(hunter->bg_sprite, hunter->bg_texture, sfTrue);
+	sfSprite_setTexture(hunter->pig_sprite, hunter->pig_texture, sfTrue);
 }
 
 int main()
 {
-	sfRenderWindow *window = window_create(1920, 1080);
-	sfTexture *background_texture;
-	sfTexture *pig_texture;
-	sfSprite *background_sprite;
-	sfSprite *pig_sprite;
-	sfEvent event;
-	sfIntRect rect;
-	sfClock *clock = sfClock_create();
-	sfTime time;
-	float seconds;
-	sfVector2f offset;
-	sfVector2f position;
+	hunter_t hunter;
 
-	offset.x = 10;
-	offset.y = 0;
-	rect.top = 0;
-	rect.left = 0;
-	rect.width = 80;
-	rect.height = 80;
-	if (!window)
-		return (84);
-	background_texture = sfTexture_createFromFile("background.png", NULL);
-	if (!background_texture)
-		return (84);
-	pig_texture = sfTexture_createFromFile("spritesheet.png", NULL);
-	if (!pig_texture)
-		return (84);
-	background_sprite = sfSprite_create();
-	pig_sprite = sfSprite_create();
-	sfSprite_setTexture(background_sprite, background_texture, sfTrue);
-	sfSprite_setTexture(pig_sprite, pig_texture, sfTrue);
-	sfRenderWindow_setFramerateLimit(window, 60);
-	while (sfRenderWindow_isOpen(window)) {
-		sfSprite_setTextureRect(pig_sprite, rect);
-		position = sfSprite_getPosition(pig_sprite);
-		if (position.x > 1840) {
-			offset.x = rand() % 10 * -1;
-			offset.y = rand() % 10;
-		}
-		if (position.x < 0) {
-			offset.x = rand() % 10;
-			offset.y = rand() % 10 * -1;
-		}
-		if (position.y < 0)
-			offset.y = rand() % 10;
-		if (position.y > 945)
-			offset.y = rand() % 10 * -1;
-		sfSprite_move(pig_sprite, offset);
-		time = sfClock_getElapsedTime(clock);
-		seconds = time.microseconds / 1000000.0;
-		if (seconds > 0.5) {
-			if (rect.left != 480)
-				rect.left += 80;
-			else
-				rect.left = 0;
-			sfClock_restart(clock);
-		}
-		while (sfRenderWindow_pollEvent(window, &event)) {
-			if (event.type == sfEvtClosed)
-				sfRenderWindow_close(window);
-		}
-		sfRenderWindow_clear(window, sfBlack);
-		sfRenderWindow_drawSprite(window, background_sprite, NULL);
-		sfRenderWindow_drawSprite(window, pig_sprite, NULL);
-		sfRenderWindow_display(window);
-	}
-	sfTexture_destroy(background_texture);
-	sfTexture_destroy(pig_texture);
-	sfSprite_destroy(background_sprite);
-	sfSprite_destroy(pig_sprite);
-	sfRenderWindow_destroy(window);
+	game_init(&hunter);
+	sfRenderWindow_setFramerateLimit(hunter.window, 60);
+	while (sfRenderWindow_isOpen(hunter.window))
+		game_loop(&hunter);
+	game_free(&hunter);
 	return (0);
 }
