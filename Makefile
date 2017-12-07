@@ -12,7 +12,7 @@ SRC=		$(SRC_DIR)/my_hunter.c	\
 
 OBJ=		$(SRC:.c=.o)
 
-CFLAGS= 	-W -Wall -fno-builtin
+CFLAGS= 	-W -Wall -fno-builtin -g
 
 CPPFLAGS =	-I include
 
