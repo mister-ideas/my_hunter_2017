@@ -13,18 +13,12 @@
 void check_borders(hunter_t *hunter)
 {
 	hunter->position = sfSprite_getPosition(hunter->pig_sprite);
-	if (hunter->position.x > 1840) {
-		hunter->offset.x = rand() % 10 * -1;
-		hunter->offset.y = rand() % 10;
+	if (hunter->position.x > 1920) {
+		hunter->offset.x += 1;
+		hunter->position.x = 0;
+		hunter->position.y = rand() % 960;
+		sfSprite_setPosition(hunter->pig_sprite, hunter->position);
 	}
-	if (hunter->position.x < 0) {
-		hunter->offset.x = rand() % 10;
-		hunter->offset.y = rand() % 10 * -1;
-	}
-	if (hunter->position.y < 0)
-		hunter->offset.y = rand() % 10;
-	if (hunter->position.y > 945)
-		hunter->offset.y = rand() % 10 * -1;
 }
 
 void game_loop(hunter_t *hunter)
