@@ -12,12 +12,12 @@
 
 void check_borders(hunter_t *hunter)
 {
-	hunter->position = sfSprite_getPosition(hunter->pig_sprite);
-	if (hunter->position.x > 1920) {
+	hunter->pig_position = sfSprite_getPosition(hunter->pig_sprite);
+	if (hunter->pig_position.x > 1920) {
 		hunter->offset.x += 1;
-		hunter->position.x = 0;
-		hunter->position.y = rand() % 960;
-		sfSprite_setPosition(hunter->pig_sprite, hunter->position);
+		hunter->pig_position.x = 0;
+		hunter->pig_position.y = rand() % 960;
+		sfSprite_setPosition(hunter->pig_sprite, hunter->pig_position);
 	}
 }
 

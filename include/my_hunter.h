@@ -20,12 +20,15 @@ typedef struct hunter {
 	sfTime time;
 	float seconds;
 	sfVector2f offset;
-	sfVector2f position;
+	sfVector2f pig_position;
+	sfVector2i mouse_position;
+	sfFloatRect bounding_box;
 } hunter_t;
 
 sfRenderWindow *window_create(unsigned int width, unsigned int height);
 
 void check_borders(hunter_t *hunter);
+void check_hit(hunter_t *hunter);
 void game_loop(hunter_t *hunter);
 void game_free(hunter_t *hunter);
 
