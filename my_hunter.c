@@ -57,10 +57,10 @@ int game_init(hunter_t *hunter)
 	hunter->rect.height = 80;
 	if (!hunter->window)
 		return (1);
-	hunter->bg_texture = sfTexture_createFromFile("background.png", NULL);
+	hunter->bg_texture = sfTexture_createFromFile("ressources/img/background.png", NULL);
 	if (!hunter->bg_texture)
 		return (1);
-	hunter->pig_texture = sfTexture_createFromFile("spritesheet.png", NULL);
+	hunter->pig_texture = sfTexture_createFromFile("ressources/img/spritesheet.png", NULL);
 	if (!hunter->pig_texture)
 		return (1);
 	hunter->bg_sprite = sfSprite_create();
