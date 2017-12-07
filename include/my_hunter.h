@@ -8,6 +8,9 @@
 #ifndef MY_HUNTER_H_
 #define MY_HUNTER_H_
 
+#define BG_PATH "ressources/img/background.png"
+#define SPRITE_PATH "ressources/img/spritesheet.png"
+
 typedef struct hunter {
 	sfRenderWindow *window;
 	sfTexture *bg_texture;

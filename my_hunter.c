@@ -47,7 +47,6 @@ void game_loop(hunter_t *hunter)
 
 int game_init(hunter_t *hunter)
 {
-	hunter->window = window_create(1920, 1080);
 	hunter->clock = sfClock_create();
 	hunter->offset.x = 10;
 	hunter->offset.y = 0;
@@ -57,10 +56,10 @@ int game_init(hunter_t *hunter)
 	hunter->rect.height = 80;
 	if (!hunter->window)
 		return (1);
-	hunter->bg_texture = sfTexture_createFromFile("ressources/img/background.png", NULL);
+	hunter->bg_texture = sfTexture_createFromFile(BG_PATH, NULL);
 	if (!hunter->bg_texture)
 		return (1);
-	hunter->pig_texture = sfTexture_createFromFile("ressources/img/spritesheet.png", NULL);
+	hunter->pig_texture = sfTexture_createFromFile(SPRITE_PATH, NULL);
 	if (!hunter->pig_texture)
 		return (1);
 	hunter->bg_sprite = sfSprite_create();
@@ -74,6 +73,7 @@ int main(void)
 {
 	hunter_t hunter;
 
+	hunter.window = window_create(1920, 1080);
 	if (game_init(&hunter) == 1)
 		return (84);
 	sfRenderWindow_setFramerateLimit(hunter.window, 60);

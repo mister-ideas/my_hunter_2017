@@ -15,7 +15,7 @@ sfRenderWindow *window_create(unsigned int width, unsigned int height)
 	sfRenderWindow *window;
 	sfVideoMode video_mode = {width, height, 32};
 
-	window = sfRenderWindow_create(video_mode, "Pig Hunter!", sfClose, NULL);
+	window = sfRenderWindow_create(video_mode, "Pig Hunter", sfClose, NULL);
 	return (window);
 }
 
