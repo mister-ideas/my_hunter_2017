@@ -12,36 +12,36 @@
 
 void check_borders(hunter_t *hunter)
 {
-	hunter->pig_position = sfSprite_getPosition(hunter->pig_sprite);
-	if (hunter->pig_position.x > 1920) {
+	hunter->pig_pos = sfSprite_getPosition(hunter->pig_sprite);
+	if (hunter->pig_pos.x > 1920) {
 		if (hunter->lives - 1 == 0)
 			sfRenderWindow_close(hunter->window);
 		else
 			hunter->lives -= 1;
-		hunter->pig_position.x = 0;
-		hunter->pig_position.y = rand() % 960;
-		sfSprite_setPosition(hunter->pig_sprite, hunter->pig_position);
+		hunter->pig_pos.x = 0;
+		hunter->pig_pos.y = rand() % 960;
+		sfSprite_setPosition(hunter->pig_sprite, hunter->pig_pos);
 		hunter->offset.y = rand() % 5;
 	}
-	if (hunter->pig_position.y > 960)
+	if (hunter->pig_pos.y > 960)
 		hunter->offset.y = rand() % 5 * -1;
-	if (hunter->pig_position.y < 0)
+	if (hunter->pig_pos.y < 0)
 		hunter->offset.y = rand() % 5;
 }
 
 void check_hit(hunter_t *hunter)
 {
-	hunter->mouse_position = sfMouse_getPositionRenderWindow(hunter->window);
-	if (hunter->mouse_position.x > hunter->pig_position.x
-	&& hunter->mouse_position.x < hunter->pig_position.x + 80
-	&& hunter->mouse_position.y > hunter->pig_position.y
-	&& hunter->mouse_position.y < hunter->pig_position.y + 80) {
+	hunter->mouse_pos = sfMouse_getPositionRenderWindow(hunter->window);
+	if (hunter->mouse_pos.x > hunter->pig_pos.x
+	&& hunter->mouse_pos.x < hunter->pig_pos.x + 80
+	&& hunter->mouse_pos.y > hunter->pig_pos.y
+	&& hunter->mouse_pos.y < hunter->pig_pos.y + 80) {
 		hunter->score += 1;
 		hunter->offset.x += 1;
 		hunter->offset.y = rand() % 5;
-		hunter->pig_position.x = 0;
-		hunter->pig_position.y = rand() % 960;
-		sfSprite_setPosition(hunter->pig_sprite, hunter->pig_position);
+		hunter->pig_pos.x = 0;
+		hunter->pig_pos.y = rand() % 960;
+		sfSprite_setPosition(hunter->pig_sprite, hunter->pig_pos);
 	}
 }
 

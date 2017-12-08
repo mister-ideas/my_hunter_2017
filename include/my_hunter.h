@@ -24,8 +24,8 @@ typedef struct hunter {
 	sfTime time;
 	float seconds;
 	sfVector2f offset;
-	sfVector2f pig_position;
-	sfVector2i mouse_position;
+	sfVector2f pig_pos;
+	sfVector2i mouse_pos;
 	int score;
 	int lives;
 } hunter_t;
