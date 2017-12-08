@@ -28,6 +28,7 @@ typedef struct hunter {
 	sfVector2i mouse_pos;
 	int score;
 	int lives;
+	sfColor orange;
 } hunter_t;
 
 sfRenderWindow *window_create(unsigned int width, unsigned int height);

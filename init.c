@@ -29,6 +29,10 @@ void val_init(hunter_t *hunter)
 	hunter->rect.height = 80;
 	hunter->score = 0;
 	hunter->lives = 3;
+	hunter->orange.r = 255;
+	hunter->orange.g = 165;
+	hunter->orange.b = 0;
+	hunter->orange.a = 255;
 }
 
 int game_init(hunter_t *hunter)
