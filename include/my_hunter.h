@@ -34,8 +34,10 @@ sfRenderWindow *window_create(unsigned int width, unsigned int height);
 
 void check_borders(hunter_t *hunter);
 void check_hit(hunter_t *hunter);
+void check_events(hunter_t *hunter);
 void game_loop(hunter_t *hunter);
 void game_free(hunter_t *hunter);
+void val_init(hunter_t *hunter);
 
 int game_init(hunter_t *hunter);
 
