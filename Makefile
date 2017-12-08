@@ -8,7 +8,8 @@
 SRC_DIR=	.
 
 SRC=		$(SRC_DIR)/my_hunter.c	\
-		$(SRC_DIR)/tools.c
+		$(SRC_DIR)/init.c	\
+		$(SRC_DIR)/game.c
 
 OBJ=		$(SRC:.c=.o)
 

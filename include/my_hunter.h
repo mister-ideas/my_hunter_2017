@@ -10,6 +10,7 @@
 
 #define BG_PATH "ressources/img/background.png"
 #define SPRITE_PATH "ressources/img/spritesheet.png"
+#define FONT_PATH "ressources/fonts/XpressiveRegular.ttf"
 
 typedef struct hunter {
 	sfRenderWindow *window;
@@ -25,7 +26,8 @@ typedef struct hunter {
 	sfVector2f offset;
 	sfVector2f pig_position;
 	sfVector2i mouse_position;
-	sfFloatRect bounding_box;
+	int score;
+	int lives;
 } hunter_t;
 
 sfRenderWindow *window_create(unsigned int width, unsigned int height);
