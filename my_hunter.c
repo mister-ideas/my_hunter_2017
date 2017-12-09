@@ -16,6 +16,8 @@ void game_free(hunter_t *hunter)
 	sfTexture_destroy(hunter->pig_texture);
 	sfSprite_destroy(hunter->bg_sprite);
 	sfSprite_destroy(hunter->pig_sprite);
+	sfText_destroy(hunter->score_text);
+	sfFont_destroy(hunter->font);
 	sfRenderWindow_destroy(hunter->window);
 }
 

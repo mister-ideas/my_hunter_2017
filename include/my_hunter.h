@@ -10,14 +10,20 @@
 
 #define BG_PATH "ressources/img/background.png"
 #define SPRITE_PATH "ressources/img/spritesheet.png"
+#define TARGET_PATH "ressources/img/target.png"
 #define FONT_PATH "ressources/fonts/XpressiveRegular.ttf"
 
-typedef struct hunter {
+typedef struct hunter_t {
 	sfRenderWindow *window;
 	sfTexture *bg_texture;
 	sfTexture *pig_texture;
+	sfTexture *target_texture;
 	sfSprite *bg_sprite;
 	sfSprite *pig_sprite;
+	sfSprite *target_sprite;
+	sfText *score_text;
+	sfText *best_text;
+	sfFont *font;
 	sfEvent event;
 	sfIntRect rect;
 	sfClock *clock;
@@ -25,10 +31,14 @@ typedef struct hunter {
 	float seconds;
 	sfVector2f offset;
 	sfVector2f pig_pos;
+	sfVector2f score_text_pos;
 	sfVector2i mouse_pos;
+	sfVector2f mouse2_pos;
 	int score;
+	int best;
 	int lives;
 	sfColor orange;
+	sfColor red;
 } hunter_t;
 
 sfRenderWindow *window_create(unsigned int width, unsigned int height);
@@ -39,6 +49,11 @@ void check_events(hunter_t *hunter);
 void game_loop(hunter_t *hunter);
 void game_free(hunter_t *hunter);
 void val_init(hunter_t *hunter);
+void convert_score(char str[], int num);
+void finished_text(hunter_t *hunter);
+void closed_text(void);
+void reset_pig(hunter_t *hunter);
+void set_score_text(char score[], hunter_t *hunter);
 
 int game_init(hunter_t *hunter);
 
