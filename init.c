@@ -44,6 +44,7 @@ void val_init(hunter_t *hunter)
 
 int files_init(hunter_t *hunter)
 {
+	hunter->window = window_create(1920, 1080);
 	if (!hunter->window)
 		return (1);
 	hunter->bg_texture = sfTexture_createFromFile(BG_PATH, NULL);
@@ -66,7 +67,6 @@ int game_init(hunter_t *hunter)
 	if (files_init(hunter) == 1)
 		return (1);
 	val_init(hunter);
-	hunter->window = window_create(1920, 1080);
 	hunter->score_text = sfText_create();
 	hunter->bg_sprite = sfSprite_create();
 	hunter->pig_sprite = sfSprite_create();

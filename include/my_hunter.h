@@ -22,7 +22,6 @@ typedef struct hunter_t {
 	sfSprite *pig_sprite;
 	sfSprite *tg_sprite;
 	sfText *score_text;
-	sfText *best_text;
 	sfFont *font;
 	sfEvent event;
 	sfIntRect rect;
