@@ -42,10 +42,8 @@ void val_init(hunter_t *hunter)
 	hunter->red.a = 255;
 }
 
-int game_init(hunter_t *hunter)
+int files_init(hunter_t *hunter)
 {
-	val_init(hunter);
-	hunter->window = window_create(1920, 1080);
 	if (!hunter->window)
 		return (1);
 	hunter->bg_texture = sfTexture_createFromFile(BG_PATH, NULL);
@@ -54,20 +52,29 @@ int game_init(hunter_t *hunter)
 	hunter->pig_texture = sfTexture_createFromFile(SPRITE_PATH, NULL);
 	if (!hunter->pig_texture)
 		return (1);
-	hunter->target_texture = sfTexture_createFromFile(TARGET_PATH, NULL);
-	if (!hunter->target_texture)
+	hunter->tg_texture = sfTexture_createFromFile(TARGET_PATH, NULL);
+	if (!hunter->tg_texture)
 		return (1);
 	hunter->font = sfFont_createFromFile(FONT_PATH);
 	if (!hunter->font)
 		return (1);
+	return (0);
+}
+
+int game_init(hunter_t *hunter)
+{
+	if (files_init(hunter) == 1)
+		return (1);
+	val_init(hunter);
+	hunter->window = window_create(1920, 1080);
 	hunter->score_text = sfText_create();
 	hunter->bg_sprite = sfSprite_create();
 	hunter->pig_sprite = sfSprite_create();
-	hunter->target_sprite = sfSprite_create();
+	hunter->tg_sprite = sfSprite_create();
 	hunter->clock = sfClock_create();
 	sfSprite_setTexture(hunter->bg_sprite, hunter->bg_texture, sfTrue);
 	sfSprite_setTexture(hunter->pig_sprite, hunter->pig_texture, sfTrue);
-	sfSprite_setTexture(hunter->target_sprite, hunter->target_texture, sfTrue);
+	sfSprite_setTexture(hunter->tg_sprite, hunter->tg_texture, sfTrue);
 	sfRenderWindow_setMouseCursorVisible(hunter->window, sfFalse);
 	sfRenderWindow_setFramerateLimit(hunter->window, 60);
 	return (0);

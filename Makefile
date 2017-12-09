@@ -9,8 +9,8 @@ SRC_DIR=	.
 
 SRC=		$(SRC_DIR)/my_hunter.c	\
 		$(SRC_DIR)/init.c	\
-		$(SRC_DIR)/game.c	\
-		$(SRC_DIR)/text.c	\
+		$(SRC_DIR)/events.c	\
+		$(SRC_DIR)/display.c	\
 		$(SRC_DIR)/my_putchar.c	\
 		$(SRC_DIR)/my_putstr.c	\
 		$(SRC_DIR)/my_strcat.c	\

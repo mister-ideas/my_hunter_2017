@@ -10,6 +10,37 @@
 #include <stdlib.h>
 #include "my_hunter.h"
 
+void set_target(hunter_t *hunter)
+{
+	hunter->mouse_pos = sfMouse_getPositionRenderWindow(hunter->window);
+	hunter->mouse2_pos.x = (float)hunter->mouse_pos.x - 35;
+	hunter->mouse2_pos.y = (float)hunter->mouse_pos.y - 35;
+	sfSprite_setPosition(hunter->tg_sprite, hunter->mouse2_pos);
+}
+
+void game_loop(hunter_t *hunter)
+{
+	char score[12];
+
+	check_borders(hunter);
+	check_events(hunter);
+	convert_score(score, hunter->score);
+	set_target(hunter);
+	set_score_text(score, hunter);
+	sfSprite_setTextureRect(hunter->pig_sprite, hunter->rect);
+	sfSprite_move(hunter->pig_sprite, hunter->offset);
+	hunter->time = sfClock_getElapsedTime(hunter->clock);
+	hunter->seconds = hunter->time.microseconds / 1000000.0;
+	if (hunter->seconds > 0.5) {
+		if (hunter->rect.left != 480)
+			hunter->rect.left += 80;
+		else
+			hunter->rect.left = 0;
+		sfClock_restart(hunter->clock);
+	}
+	window_display(hunter);
+}
+
 void game_free(hunter_t *hunter)
 {
 	sfTexture_destroy(hunter->bg_texture);

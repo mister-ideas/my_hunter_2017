@@ -17,10 +17,10 @@ typedef struct hunter_t {
 	sfRenderWindow *window;
 	sfTexture *bg_texture;
 	sfTexture *pig_texture;
-	sfTexture *target_texture;
+	sfTexture *tg_texture;
 	sfSprite *bg_sprite;
 	sfSprite *pig_sprite;
-	sfSprite *target_sprite;
+	sfSprite *tg_sprite;
 	sfText *score_text;
 	sfText *best_text;
 	sfFont *font;
@@ -54,7 +54,10 @@ void finished_text(hunter_t *hunter);
 void closed_text(void);
 void reset_pig(hunter_t *hunter);
 void set_score_text(char score[], hunter_t *hunter);
+void window_display(hunter_t *hunter);
+void set_target(hunter_t *hunter);
 
 int game_init(hunter_t *hunter);
+int files_init(hunter_t *hunter);
 
 #endif
