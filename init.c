@@ -30,7 +30,7 @@ void val_init(hunter_t *hunter)
 	hunter->score = 0;
 	hunter->best = 0;
 	hunter->lives = 3;
-	hunter->score_text_pos.x = 950;
+	hunter->score_text_pos.x = 925;
 	hunter->score_text_pos.y = 940;
 	hunter->orange.r = 255;
 	hunter->orange.g = 165;
