@@ -50,8 +50,8 @@ void help_text(void)
 	my_putstr("Pig Hunter\n");
 	my_putstr("====================\n\n");
 	my_putstr("USAGE\n");
-	my_putstr("    	./my_hunter [OPTIONS]\n\n");
+	my_putstr("	./my_hunter [OPTIONS]\n\n");
 	my_putstr("OPTIONS\n");
-	my_putstr("    	-h	Print usage and exit.\n\n");
-	my_putstr("Note: Don't forget to read the 'README' file for rules and more!\n");
+	my_putstr("	-h	Print usage and exit.\n\n");
+	my_putstr("Don't forget to read the 'README' file for more info!\n");
 }
