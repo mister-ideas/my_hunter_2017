@@ -13,7 +13,7 @@
 #define TARGET_PATH "ressources/img/target.png"
 #define FONT_PATH "ressources/fonts/XpressiveRegular.ttf"
 
-typedef struct hunter_t {
+typedef struct hunter {
 	sfRenderWindow *window;
 	sfTexture *bg_texture;
 	sfTexture *pig_texture;
@@ -51,6 +51,7 @@ void val_init(hunter_t *hunter);
 void convert_score(char str[], int num);
 void finished_text(hunter_t *hunter);
 void closed_text(void);
+void help_text(void);
 void reset_pig(hunter_t *hunter);
 void set_score_text(char score[], hunter_t *hunter);
 void window_display(hunter_t *hunter);

@@ -5,7 +5,7 @@
 ## Makefile
 ##
 
-SRC_DIR=	.
+SRC_DIR=	src
 
 SRC=		$(SRC_DIR)/my_hunter.c	\
 		$(SRC_DIR)/init.c	\
