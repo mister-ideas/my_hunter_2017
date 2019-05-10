@@ -1,5 +1,5 @@
 ====================
-Pig Hunt!
+     Pig Hunt!
 ====================
 
 Remake of famous 'Duck Hunt' game based on Angry Birds!
@@ -67,5 +67,5 @@ $ ./my_hunter
 - You can't resize the window.
 
 ====================
-Kill 'em all !
+   Kill 'em all !
 ====================
