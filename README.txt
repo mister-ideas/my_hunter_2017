@@ -11,6 +11,18 @@ Remake of famous 'Duck Hunt' game based on Angry Birds!
 Vincent Attali
 vincent.attali@epitech.eu
 
+*--------*
+|BUILDING|
+*--------*
+
+$ make
+
+*-----*
+|USAGE|
+*-----*
+
+$ ./my_hunter
+
 *-----*
 |RULES|
 *-----*
