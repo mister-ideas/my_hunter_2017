@@ -4,13 +4,6 @@
 
 Remake of famous 'Duck Hunt' game based on Angry Birds!
 
-*------*
-|AUTHOR|
-*------*
-
-Vincent Attali
-vincent.attali@epitech.eu
-
 *--------*
 |BUILDING|
 *--------*
